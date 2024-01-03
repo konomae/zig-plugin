@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 extism-pdk = "0.3.4"
 proto_pdk = "0.12.2"
+serde = "1.0.194"
 
 [lib]
 crate-type = ['cdylib']
