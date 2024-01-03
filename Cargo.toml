@@ -6,6 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+extism-pdk = "0.3.4"
+proto_pdk = "0.12.2"
 
 [lib]
 crate-type = ['cdylib']
