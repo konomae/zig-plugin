@@ -2,6 +2,7 @@ use extism_pdk::*;
 use proto_pdk::*;
 
 static NAME: &str = "Zig";
+static BIN: &str = "zig";
 
 #[plugin_fn]
 pub fn register_tool(_: ()) -> FnResult<Json<ToolMetadataOutput>> {
@@ -69,5 +70,17 @@ pub fn download_prebuilt(
         download_url: format!("https://ziglang.org/{directory}/{filename}"),
         download_name: Some(filename),
         ..DownloadPrebuiltOutput::default()
+    }))
+}
+
+#[plugin_fn]
+pub fn locate_executables(
+    Json(_): Json<LocateExecutablesInput>,
+) -> FnResult<Json<LocateExecutablesOutput>> {
+    let env = get_proto_environment()?;
+
+    Ok(Json(LocateExecutablesOutput {
+        primary: Some(ExecutableConfig::new(env.os.get_file_name(BIN, "exe"))),
+        ..LocateExecutablesOutput::default()
     }))
 }
