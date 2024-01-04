@@ -33,7 +33,11 @@ pub fn download_prebuilt(
         ],
     )?;
 
-    let version = input.context.version;
+    let mut version = input.context.version;
+    if version.is_canary() {
+        let response: ZigDist = fetch_url("https://ziglang.org/download/index.json")?;
+        version = VersionSpec::parse(response.master.version)?;
+    }
 
     let arch = match env.arch {
         HostArch::X86 => "x86",
