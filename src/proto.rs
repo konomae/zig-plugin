@@ -60,7 +60,7 @@ pub fn download_prebuilt(
     };
 
     let directory = match &version {
-        VersionSpec::Version(v) if !v.pre.is_empty() => "builds".to_string(),
+        VersionSpec::Version(v) if !v.build.is_empty() => "builds".to_string(),
         _ => format!("download/{version}"),
     };
 
