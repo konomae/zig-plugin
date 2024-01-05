@@ -2069,7 +2069,7 @@ dependencies = [
  "miette",
  "minisign-verify",
  "once_cell",
- "proto_pdk_api 0.13.0",
+ "proto_pdk_api",
  "proto_shim",
  "regex",
  "reqwest",
@@ -2083,40 +2083,24 @@ dependencies = [
  "starbase_events",
  "starbase_styles",
  "starbase_utils",
- "system_env 0.2.0",
+ "system_env",
  "thiserror",
  "tracing",
  "url",
- "version_spec 0.2.0",
+ "version_spec",
  "warpgate",
 ]
 
 [[package]]
 name = "proto_pdk"
-version = "0.12.2"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f48c79d2b872cb8c7a7cdb609e3e7f214d9ee1bcf178f6a30246e9342863dd40"
+checksum = "9d8b577750bee657b183c150163a93ac3158e3bd8f7e7ff4ce24ecfa433742d4"
 dependencies = [
  "anyhow",
  "extism-pdk",
- "proto_pdk_api 0.12.2",
+ "proto_pdk_api",
  "serde",
-]
-
-[[package]]
-name = "proto_pdk_api"
-version = "0.12.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cdb30a90de48c242c147a65dff61438d55761f5e587bd611ab6e12812b19a573"
-dependencies = [
- "anyhow",
- "semver",
- "serde",
- "serde_json",
- "system_env 0.1.9",
- "thiserror",
- "version_spec 0.1.7",
- "warpgate_api 0.1.6",
 ]
 
 [[package]]
@@ -2129,10 +2113,10 @@ dependencies = [
  "semver",
  "serde",
  "serde_json",
- "system_env 0.2.0",
+ "system_env",
  "thiserror",
- "version_spec 0.2.0",
- "warpgate_api 0.2.0",
+ "version_spec",
+ "warpgate_api",
 ]
 
 [[package]]
@@ -2143,7 +2127,7 @@ checksum = "41f75c7ca15dc7e6f3d14fac62ef83d6a98556ecc32812b76fe82cad40a56264"
 dependencies = [
  "extism",
  "proto_core",
- "proto_pdk_api 0.13.0",
+ "proto_pdk_api",
  "serde_json",
 ]
 
@@ -2934,18 +2918,6 @@ dependencies = [
 
 [[package]]
 name = "system_env"
-version = "0.1.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "76fbf6353d6f73a28aa1620d91bbcf843a50d4575b18558c9ec83090db0a4239"
-dependencies = [
- "serde",
- "serde_json",
- "shell-words",
- "thiserror",
-]
-
-[[package]]
-name = "system_env"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8dbaf08f70781cb6543bb0cce3d6b63a50cce05f4b071db833d78426f072ef7b"
@@ -3357,18 +3329,6 @@ checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 
 [[package]]
 name = "version_spec"
-version = "0.1.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "460b94056fcc70bbf79dd743b91f6709e395a20d4b37bb2a929b73bd59fb24b0"
-dependencies = [
- "human-sort",
- "regex",
- "semver",
- "serde",
-]
-
-[[package]]
-name = "version_spec"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "28f9327e7b3c0554ec9291491b8e16bf693d35ea18ba4173efbcf2e76078c91f"
@@ -3429,16 +3389,7 @@ dependencies = [
  "starbase_utils",
  "thiserror",
  "tracing",
- "warpgate_api 0.2.0",
-]
-
-[[package]]
-name = "warpgate_api"
-version = "0.1.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5fe2fae4f5a428c7c697e057909240e376abdd45577beec6d4bd9798b451f20c"
-dependencies = [
- "serde",
+ "warpgate_api",
 ]
 
 [[package]]
