@@ -8,7 +8,7 @@ Add the following to `.prototools`.
 
 ```toml
 [plugins]
-zig = "source:https://github.com/konomae/zig-plugin/releases/download/vX.Y.Z/zig_plugin.wasm"
+zig = "github:konomae/zig-plugin"
 ```
 
 ## Configuration
