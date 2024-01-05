@@ -1,11 +1,11 @@
 use proto_pdk_test_utils::*;
 use starbase_sandbox::create_empty_sandbox;
 
-// generate_resolve_versions_tests!("zig-test", {
-//     "0.10" => "0.10.1",
-//     "0.11.0" => "0.11.0",
-//     "0" => "0.11.0",
-// });
+generate_resolve_versions_tests!("zig-test", {
+    "0.10" => "0.10.1",
+    "0.11.0" => "0.11.0",
+    "0" => "0.11.0",
+});
 
 #[test]
 fn loads_versions_from_dist_url() {
