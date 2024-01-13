@@ -94,9 +94,12 @@ pub fn locate_executables(
 pub fn load_versions(Json(_): Json<LoadVersionsInput>) -> FnResult<Json<LoadVersionsOutput>> {
     let response: ZigDist = fetch_url("https://ziglang.org/download/index.json")?;
     let mut versions: Vec<String> = response.versions.keys().map(|t| t.to_owned()).collect();
-    versions.push(response.master.version);
+    versions.push(response.master.version.clone());
 
-    let output = LoadVersionsOutput::from(versions)?;
+    let mut output = LoadVersionsOutput::from(versions)?;
+    output
+        .aliases
+        .insert("master".into(), Version::parse(&response.master.version)?);
 
     Ok(Json(output))
 }

@@ -28,3 +28,14 @@ fn sets_latest_alias() {
     assert!(output.aliases.contains_key("latest"));
     assert_eq!(output.aliases.get("latest"), output.latest.as_ref());
 }
+
+#[test]
+fn sets_master_alias() {
+    let sandbox = create_empty_sandbox();
+    let plugin = create_plugin("zig-test", sandbox.path());
+
+    let output = plugin.load_versions(LoadVersionsInput::default());
+
+    assert!(output.aliases.contains_key("latest"));
+    assert!(!output.aliases.get("master").unwrap().build.is_empty());
+}
