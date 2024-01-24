@@ -19,7 +19,7 @@ pub fn register_tool(_: ()) -> FnResult<Json<ToolMetadataOutput>> {
 pub fn download_prebuilt(
     Json(input): Json<DownloadPrebuiltInput>,
 ) -> FnResult<Json<DownloadPrebuiltOutput>> {
-    let env = get_proto_environment()?;
+    let env = get_host_environment()?;
 
     check_supported_os_and_arch(
         NAME,
@@ -82,7 +82,7 @@ pub fn download_prebuilt(
 pub fn locate_executables(
     Json(_): Json<LocateExecutablesInput>,
 ) -> FnResult<Json<LocateExecutablesOutput>> {
-    let env = get_proto_environment()?;
+    let env = get_host_environment()?;
 
     Ok(Json(LocateExecutablesOutput {
         primary: Some(ExecutableConfig::new(env.os.get_file_name(BIN, "exe"))),
