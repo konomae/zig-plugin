@@ -1,6 +1,6 @@
 [package]
 name = "zig_plugin"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2021"
 license = "MIT"
 publish = false
@@ -9,14 +9,14 @@ publish = false
 crate-type = ['cdylib']
 
 [dependencies]
-extism-pdk = "1.0.0"
-proto_pdk = "0.15.1"
-serde = "1.0.195"
+extism-pdk = "1.1.0"
+proto_pdk = "0.17.3"
+serde = "1.0.197"
 
 [dev-dependencies]
-proto_pdk_test_utils = "0.17.3"
-starbase_sandbox = "0.1.13"
-tokio = { version = "1.35.1", features = ["full"] }
+proto_pdk_test_utils = "0.19.6"
+starbase_sandbox = "0.4.0"
+tokio = { version = "1.36.0", features = ["full"] }
 
 [features]
 default = ["wasm"]
