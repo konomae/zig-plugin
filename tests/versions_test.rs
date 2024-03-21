@@ -1,5 +1,4 @@
 use proto_pdk_test_utils::*;
-use starbase_sandbox::create_empty_sandbox;
 
 generate_resolve_versions_tests!("zig-test", {
     "0.10" => "0.10.1",
@@ -9,8 +8,8 @@ generate_resolve_versions_tests!("zig-test", {
 
 #[test]
 fn loads_versions_from_dist_url() {
-    let sandbox = create_empty_sandbox();
-    let plugin = create_plugin("zig-test", sandbox.path());
+    let sandbox = create_empty_proto_sandbox();
+    let plugin = sandbox.create_plugin("zig-test");
 
     let output = plugin.load_versions(LoadVersionsInput::default());
 
@@ -19,8 +18,8 @@ fn loads_versions_from_dist_url() {
 
 #[test]
 fn sets_latest_alias() {
-    let sandbox = create_empty_sandbox();
-    let plugin = create_plugin("zig-test", sandbox.path());
+    let sandbox = create_empty_proto_sandbox();
+    let plugin = sandbox.create_plugin("zig-test");
 
     let output = plugin.load_versions(LoadVersionsInput::default());
 
@@ -31,8 +30,8 @@ fn sets_latest_alias() {
 
 #[test]
 fn sets_master_alias() {
-    let sandbox = create_empty_sandbox();
-    let plugin = create_plugin("zig-test", sandbox.path());
+    let sandbox = create_empty_proto_sandbox();
+    let plugin = sandbox.create_plugin("zig-test");
 
     let output = plugin.load_versions(LoadVersionsInput::default());
 
