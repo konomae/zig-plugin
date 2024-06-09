@@ -8,7 +8,7 @@ Add the following to `.prototools`.
 
 ```toml
 [plugins]
-zig = "github:konomae/zig-plugin"
+zig = "github://konomae/zig-plugin"
 ```
 
 ## Configuration
