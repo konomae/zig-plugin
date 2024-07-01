@@ -60,7 +60,7 @@ pub fn download_prebuilt(
     };
 
     let directory = match &version {
-        VersionSpec::Version(v) if !v.build.is_empty() => "builds".to_string(),
+        VersionSpec::Semantic(v) if !v.build.is_empty() => "builds".to_string(),
         _ => format!("download/{version}"),
     };
 
@@ -97,9 +97,10 @@ pub fn load_versions(Json(_): Json<LoadVersionsInput>) -> FnResult<Json<LoadVers
     versions.push(response.master.version.clone());
 
     let mut output = LoadVersionsOutput::from(versions)?;
-    output
-        .aliases
-        .insert("master".into(), Version::parse(&response.master.version)?);
+    output.aliases.insert(
+        "master".into(),
+        UnresolvedVersionSpec::parse(&response.master.version)?,
+    );
 
     Ok(Json(output))
 }
