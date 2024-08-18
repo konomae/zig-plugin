@@ -1,2 +1,2 @@
 [plugins]
-zig-test = "source:target/wasm32-wasi/debug/zig_plugin.wasm"
+zig-test = "file://./target/wasm32-wasi/debug/zig_plugin.wasm"

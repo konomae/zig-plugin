@@ -8,21 +8,25 @@ mod canary {
     generate_download_install_tests!("zig-test", "canary");
 }
 
-#[test]
-fn supports_linux_arm64() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_linux_arm64() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Linux, HostArch::Arm64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Linux, HostArch::Arm64);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-linux-aarch64-0.11.0".into()),
             checksum_url: Some(
@@ -40,21 +44,25 @@ fn supports_linux_arm64() {
     );
 }
 
-#[test]
-fn supports_linux_x64() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_linux_x64() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Linux, HostArch::X64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Linux, HostArch::X64);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-linux-x86_64-0.11.0".into()),
             checksum_url: Some(
@@ -71,21 +79,25 @@ fn supports_linux_x64() {
     );
 }
 
-#[test]
-fn supports_linux_x86() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_linux_x86() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Linux, HostArch::X86);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Linux, HostArch::X86);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-linux-x86-0.11.0".into()),
             checksum_url: Some(
@@ -101,21 +113,25 @@ fn supports_linux_x86() {
     );
 }
 
-#[test]
-fn supports_macos_arm64() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_macos_arm64() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::MacOS, HostArch::Arm64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::MacOS, HostArch::Arm64);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-macos-aarch64-0.11.0".into()),
             checksum_url: Some(
@@ -133,21 +149,25 @@ fn supports_macos_arm64() {
     );
 }
 
-#[test]
-fn supports_macos_x64() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_macos_x64() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::MacOS, HostArch::X64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::MacOS, HostArch::X64);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-macos-x86_64-0.11.0".into()),
             checksum_url: Some(
@@ -164,21 +184,25 @@ fn supports_macos_x64() {
     );
 }
 
-#[test]
-fn supports_windows_arm64() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_windows_arm64() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Windows, HostArch::Arm64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Windows, HostArch::Arm64);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-windows-aarch64-0.11.0".into()),
             checksum_url: Some(
@@ -195,21 +219,25 @@ fn supports_windows_arm64() {
     );
 }
 
-#[test]
-fn supports_windows_x64() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_windows_x64() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Windows, HostArch::X64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Windows, HostArch::X64);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-windows-x86_64-0.11.0".into()),
             checksum_url: Some(
@@ -226,21 +254,25 @@ fn supports_windows_x64() {
     );
 }
 
-#[test]
-fn supports_windows_x86() {
+#[tokio::test(flavor = "multi_thread")]
+async fn supports_windows_x86() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Windows, HostArch::X86);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Windows, HostArch::X86);
+        })
+        .await;
 
     assert_eq!(
-        plugin.download_prebuilt(DownloadPrebuiltInput {
-            context: ToolContext {
-                version: VersionSpec::parse("0.11.0").unwrap(),
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.11.0").unwrap(),
+                    ..Default::default()
+                },
                 ..Default::default()
-            },
-            ..Default::default()
-        }),
+            })
+            .await,
         DownloadPrebuiltOutput {
             archive_prefix: Some("zig-windows-x86-0.11.0".into()),
             checksum_url: Some(
@@ -256,12 +288,14 @@ fn supports_windows_x86() {
     );
 }
 
-#[test]
-fn locates_unix_bin() {
+#[tokio::test(flavor = "multi_thread")]
+async fn locates_unix_bin() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Linux, HostArch::Arm64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Linux, HostArch::Arm64);
+        })
+        .await;
 
     assert_eq!(
         plugin
@@ -271,6 +305,7 @@ fn locates_unix_bin() {
                     ..Default::default()
                 },
             })
+            .await
             .primary
             .unwrap()
             .exe_path,
@@ -278,12 +313,14 @@ fn locates_unix_bin() {
     );
 }
 
-#[test]
-fn locates_windows_bin() {
+#[tokio::test(flavor = "multi_thread")]
+async fn locates_windows_bin() {
     let sandbox = create_empty_proto_sandbox();
-    let plugin = sandbox.create_plugin_with_config("zig-test", |config| {
-        config.host(HostOS::Windows, HostArch::X64);
-    });
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Windows, HostArch::X64);
+        })
+        .await;
 
     assert_eq!(
         plugin
@@ -293,6 +330,7 @@ fn locates_windows_bin() {
                     ..Default::default()
                 },
             })
+            .await
             .primary
             .unwrap()
             .exe_path,
