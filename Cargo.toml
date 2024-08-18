@@ -1,6 +1,6 @@
 [package]
-name = "zig_plugin"
-version = "0.5.1"
+name = "zig_tool"
+version = "0.6.0"
 edition = "2021"
 license = "MIT"
 publish = false
