@@ -6,7 +6,7 @@ static NAME: &str = "Zig";
 static BIN: &str = "zig";
 
 #[plugin_fn]
-pub fn register_tool(_: ()) -> FnResult<Json<ToolMetadataOutput>> {
+pub fn register_tool(Json(_): Json<ToolMetadataInput>) -> FnResult<Json<ToolMetadataOutput>> {
     Ok(Json(ToolMetadataOutput {
         name: NAME.into(),
         type_of: PluginType::Language,
@@ -24,7 +24,7 @@ pub fn download_prebuilt(
     check_supported_os_and_arch(
         NAME,
         &env,
-        permutations! [
+        permutations![
             HostOS::Linux => [HostArch::X86, HostArch::X64, HostArch::Arm64],
             HostOS::MacOS => [HostArch::X64, HostArch::Arm64],
             HostOS::Windows => [HostArch::X86, HostArch::X64, HostArch::Arm64],
@@ -33,7 +33,7 @@ pub fn download_prebuilt(
 
     let mut version = input.context.version;
     if version.is_canary() {
-        let response: ZigDist = fetch_url("https://ziglang.org/download/index.json")?;
+        let response: ZigDist = fetch_json("https://ziglang.org/download/index.json")?;
         version = VersionSpec::parse(response.master.version)?;
     }
 
@@ -92,7 +92,7 @@ pub fn locate_executables(
 
 #[plugin_fn]
 pub fn load_versions(Json(_): Json<LoadVersionsInput>) -> FnResult<Json<LoadVersionsOutput>> {
-    let response: ZigDist = fetch_url("https://ziglang.org/download/index.json")?;
+    let response: ZigDist = fetch_json("https://ziglang.org/download/index.json")?;
     let mut versions: Vec<String> = response.versions.keys().map(|t| t.to_owned()).collect();
     versions.push(response.master.version.clone());
 
