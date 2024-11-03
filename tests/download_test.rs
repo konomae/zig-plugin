@@ -306,7 +306,8 @@ async fn locates_unix_bin() {
                 },
             })
             .await
-            .primary
+            .exes
+            .get("zig")
             .unwrap()
             .exe_path,
         Some("zig".into())
@@ -331,7 +332,8 @@ async fn locates_windows_bin() {
                 },
             })
             .await
-            .primary
+            .exes
+            .get("zig")
             .unwrap()
             .exe_path,
         Some("zig.exe".into())
