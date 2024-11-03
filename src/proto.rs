@@ -54,7 +54,7 @@ pub fn download_prebuilt(
         _ => unreachable!(),
     };
 
-    let filename = if os == HostOS::Windows {
+    let filename = if os.is_windows() {
         format!("{prefix}.zip")
     } else {
         format!("{prefix}.tar.xz")
