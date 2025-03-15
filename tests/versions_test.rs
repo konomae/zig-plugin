@@ -3,7 +3,7 @@ use proto_pdk_test_utils::*;
 generate_resolve_versions_tests!("zig-test", {
     "0.10" => "0.10.1",
     "0.11.0" => "0.11.0",
-    "0" => "0.13.0",
+    "0" => "0.14.0",
 });
 
 #[tokio::test(flavor = "multi_thread")]
@@ -36,13 +36,15 @@ async fn sets_master_alias() {
     let output = plugin.load_versions(LoadVersionsInput::default()).await;
 
     assert!(output.aliases.contains_key("latest"));
-    assert!(!output
-        .aliases
-        .get("master")
-        .unwrap()
-        .to_resolved_spec()
-        .as_version()
-        .unwrap()
-        .build
-        .is_empty());
+    assert!(
+        !output
+            .aliases
+            .get("master")
+            .unwrap()
+            .to_resolved_spec()
+            .as_version()
+            .unwrap()
+            .build
+            .is_empty()
+    );
 }
