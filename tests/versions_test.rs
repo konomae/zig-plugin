@@ -36,13 +36,15 @@ async fn sets_master_alias() {
     let output = plugin.load_versions(LoadVersionsInput::default()).await;
 
     assert!(output.aliases.contains_key("latest"));
-    assert!(!output
-        .aliases
-        .get("master")
-        .unwrap()
-        .to_resolved_spec()
-        .as_version()
-        .unwrap()
-        .build
-        .is_empty());
+    assert!(
+        !output
+            .aliases
+            .get("master")
+            .unwrap()
+            .to_resolved_spec()
+            .as_version()
+            .unwrap()
+            .build
+            .is_empty()
+    );
 }
