@@ -52,7 +52,11 @@ pub fn download_prebuilt(
         _ => unreachable!(),
     };
 
-    let prefix = format!("zig-{os}-{arch}-{version}");
+    let prefix = if version >= VersionSpec::parse("0.14.1")? {
+        format!("zig-{arch}-{os}-{version}")
+    } else {
+        format!("zig-{os}-{arch}-{version}")
+    };
 
     let filename = if env.os.is_windows() {
         format!("{prefix}.zip")
