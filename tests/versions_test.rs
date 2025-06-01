@@ -1,8 +1,8 @@
 use proto_pdk_test_utils::*;
 
 generate_resolve_versions_tests!("zig-test", {
-    "0.10" => "0.10.1",
-    "0.11.0" => "0.11.0",
+    "0.14" => "0.14.1",
+    "0.14.0" => "0.14.0",
     "0" => "0.14.1",
 });
 
