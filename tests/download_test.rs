@@ -289,6 +289,42 @@ async fn supports_windows_x86() {
 }
 
 #[tokio::test(flavor = "multi_thread")]
+async fn supports_v0_14_0_and_below() {
+    let sandbox = create_empty_proto_sandbox();
+    let plugin = sandbox
+        .create_plugin_with_config("zig-test", |config| {
+            config.host(HostOS::Linux, HostArch::Arm64);
+        })
+        .await;
+
+    assert_eq!(
+        plugin
+            .download_prebuilt(DownloadPrebuiltInput {
+                context: ToolContext {
+                    version: VersionSpec::parse("0.14.0").unwrap(),
+                    ..Default::default()
+                },
+                ..Default::default()
+            })
+            .await,
+        DownloadPrebuiltOutput {
+            archive_prefix: Some("zig-linux-aarch64-0.14.0".into()),
+            checksum_url: Some(
+                "https://ziglang.org/download/0.14.0/zig-linux-aarch64-0.14.0.tar.xz.minisig"
+                    .into()
+            ),
+            checksum_public_key: Some(
+                "RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U".into()
+            ),
+            download_name: Some("zig-linux-aarch64-0.14.0.tar.xz".into()),
+            download_url: "https://ziglang.org/download/0.14.0/zig-linux-aarch64-0.14.0.tar.xz"
+                .into(),
+            ..Default::default()
+        }
+    );
+}
+
+#[tokio::test(flavor = "multi_thread")]
 async fn locates_unix_bin() {
     let sandbox = create_empty_proto_sandbox();
     let plugin = sandbox
