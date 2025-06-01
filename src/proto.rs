@@ -45,16 +45,16 @@ pub fn download_prebuilt(
         _ => unreachable!(),
     };
 
-    let os = env.os;
-
-    let prefix = match os {
-        HostOS::Linux => format!("zig-linux-{arch}-{version}"),
-        HostOS::MacOS => format!("zig-macos-{arch}-{version}"),
-        HostOS::Windows => format!("zig-windows-{arch}-{version}"),
+    let os = match env.os {
+        HostOS::Linux => "linux",
+        HostOS::MacOS => "macos",
+        HostOS::Windows => "windows",
         _ => unreachable!(),
     };
 
-    let filename = if os.is_windows() {
+    let prefix = format!("zig-{os}-{arch}-{version}");
+
+    let filename = if env.os.is_windows() {
         format!("{prefix}.zip")
     } else {
         format!("{prefix}.tar.xz")
