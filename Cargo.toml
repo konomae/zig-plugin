@@ -1,22 +1,22 @@
 [package]
 name = "zig_tool"
-version = "0.10.0"
+version = "0.11.0"
 edition = "2024"
 license = "MIT"
 publish = false
 
 [lib]
-crate-type = ['cdylib']
+crate-type = ["cdylib"]
 
 [dependencies]
 extism-pdk = "1.4.1"
-proto_pdk = "0.28.9"
-serde = "1.0.219"
+proto_pdk = "0.32.8"
+serde = { version = "1.0.228", features = ["derive"] }
 
 [dev-dependencies]
-proto_pdk_test_utils = "0.37.2"
-starbase_sandbox = "0.9.3"
-tokio = { version = "1.45.1", features = ["full"] }
+proto_pdk_test_utils = "0.44.1"
+starbase_sandbox = "0.10.7"
+tokio = { version = "1.51.1", features = ["full"] }
 
 [features]
 default = ["wasm"]

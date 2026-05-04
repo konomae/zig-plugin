@@ -5,7 +5,9 @@ async fn registers_metadata() {
     let sandbox = create_empty_proto_sandbox();
     let plugin = sandbox.create_plugin("zig-test").await;
 
-    let metadata = plugin.register_tool(RegisterToolInput::default()).await;
+    let metadata = plugin
+        .register_tool(RegisterToolInput { id: Id::raw("zig") })
+        .await;
 
     assert_eq!(metadata.name, "Zig");
     assert_eq!(

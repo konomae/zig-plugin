@@ -1,8 +1,10 @@
 ---
 source: tests/shims_test.rs
 expression: "std :: fs ::\nread_to_string(sandbox.path().join(\".proto/shims/registry.json\")).unwrap()"
-snapshot_kind: text
 ---
 {
-  "zig": {}
+  "zig": {
+    "alt_bin": true,
+    "parent": "zig-test"
+  }
 }
