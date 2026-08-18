@@ -10,9 +10,9 @@ pub fn register_tool(Json(_): Json<RegisterToolInput>) -> FnResult<Json<Register
     Ok(Json(RegisterToolOutput {
         name: NAME.into(),
         type_of: PluginType::Language,
-        minimum_proto_version: Some(Version::new(0, 47, 4)),
+        minimum_proto_version: Some(Version::new(0, 60, 0)),
         plugin_version: Version::parse(env!("CARGO_PKG_VERSION")).ok(),
-        ..RegisterToolOutput::default()
+        ..Default::default()
     }))
 }
 
@@ -24,7 +24,7 @@ pub fn download_prebuilt(
 
     check_supported_os_and_arch(
         NAME,
-        &env,
+        env,
         permutations![
             HostOS::Linux => [HostArch::X86, HostArch::X64, HostArch::Arm64],
             HostOS::MacOS => [HostArch::X64, HostArch::Arm64],
@@ -65,7 +65,7 @@ pub fn download_prebuilt(
     };
 
     let directory = match &version {
-        VersionSpec::Semantic(v) if !v.build.is_empty() => "builds".to_string(),
+        VersionSpec::Version(v) if v.build.is_some() => "builds".to_string(),
         _ => format!("download/{version}"),
     };
 
@@ -79,7 +79,7 @@ pub fn download_prebuilt(
         ),
         download_url: format!("https://ziglang.org/{directory}/{filename}"),
         download_name: Some(filename),
-        ..DownloadPrebuiltOutput::default()
+        ..Default::default()
     }))
 }
 
@@ -94,7 +94,7 @@ pub fn locate_executables(
             "zig".into(),
             ExecutableConfig::new_primary(env.os.get_exe_name("zig")),
         )]),
-        ..LocateExecutablesOutput::default()
+        ..Default::default()
     }))
 }
 
