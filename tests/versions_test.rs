@@ -37,7 +37,7 @@ async fn sets_master_alias() {
 
     assert!(output.aliases.contains_key("latest"));
     assert!(
-        !output
+        output
             .aliases
             .get("master")
             .unwrap()
@@ -45,6 +45,6 @@ async fn sets_master_alias() {
             .as_version()
             .unwrap()
             .build
-            .is_empty()
+            .is_some()
     );
 }
